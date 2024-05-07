@@ -18,7 +18,7 @@ export default function App() {
   const [apiData, setApiData] = useState(null)
   useEffect(() => {
     if (!ipAddress) return; 
-    const URL = `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_API_KEY}&ipAddress=${ipAddress}`
+    const URL = `http://ip-api.com/json/${ipAddress}`
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {

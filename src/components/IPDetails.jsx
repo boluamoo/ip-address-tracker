@@ -6,19 +6,19 @@ export default function IPDetails({ apiData }) {
       <div className="flex-1">
         <h2 className="text-[10px] text-[hsl(0, 0%, 59%)]">IP ADDRESS</h2>
         <p className="text-[hsl(0, 0%, 17%)] font-bold text-[20px]">
-          {apiData?.ip}
+          {apiData?.query}
         </p>
       </div>
       <div className="flex-1">
         <h2 className="text-[10px] text-[hsl(0, 0%, 59%)]">LOCATION</h2>
         <p className="text-[hsl(0, 0%, 17%)] font-bold text-[20px]">
-          {apiData?.location.country}, {apiData?.location.region}
+          {apiData?.regionName}, {apiData?.countryCode}
         </p>
       </div>
       <div className="flex-1">
         <h2 className="text-[10px] text-[hsl(0, 0%, 59%)]">TIMEZONE</h2>
         <p className="text-[hsl(0, 0%, 17%)] font-bold text-[20px]">
-          UTC {apiData?.location.timezone}{' '}
+          {apiData?.timezone}{' '}
         </p>
       </div>
       {apiData?.isp && (

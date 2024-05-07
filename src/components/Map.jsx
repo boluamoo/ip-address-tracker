@@ -8,8 +8,8 @@ export default function Map({ apiData }) {
   }
 
   const defaultCenter = {
-    lat: apiData?.location.lat,
-    lng: apiData?.location.lng,
+    lat: apiData?.lat,
+    lng: apiData?.lon,
   }
 
   return (
