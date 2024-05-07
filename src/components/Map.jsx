@@ -1,22 +1,37 @@
-import React from 'react'
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import React, { useEffect, useState } from 'react'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 
 export default function Map({ apiData }) {
-  const mapStyles = {
-    height: '100vh',
-    width: '100%',
-  }
+  const [position, setPosition] = useState([0, 0])
+  const [loading, setLoading] = useState(true)
 
-  const defaultCenter = {
-    lat: apiData?.lat,
-    lng: apiData?.lon,
-  }
+  useEffect(() => {
+    if (apiData && apiData.lat !== undefined && apiData.lon !== undefined) {
+      setPosition([apiData.lat, apiData.lon])
+      setLoading(false)
+    } else {
+      setLoading(true)
+    }
+  }, [apiData])
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}>
-      <GoogleMap mapContainerStyle={mapStyles} zoom={50} center={defaultCenter}>
-        <Marker position={defaultCenter} />
-      </GoogleMap>
-    </LoadScript>
+    <div className="">
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <MapContainer
+          center={position}
+          zoom={7}
+          scrollWheelZoom={false}
+          className="map-container z-0 min-h-[307px] h-[100vh] max-h-[677px]"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={position} />
+        </MapContainer>
+      )}
+    </div>
   )
 }
