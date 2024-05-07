@@ -25,7 +25,7 @@ export default function App() {
         setApiData(data)
       })
       console.log(apiData);
-  }, [ipAddress])
+  }, [ipAddress, apiData])
 
   return (
     <IPContext.Provider value={ipAddress}>
