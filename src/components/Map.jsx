@@ -13,7 +13,7 @@ export default function Map({ apiData }) {
   }
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyA3-wL6CeIHx-mJgvL_1E1okULl4alJrqU">
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_KEY}>
       <GoogleMap mapContainerStyle={mapStyles} zoom={50} center={defaultCenter}>
         <Marker position={defaultCenter} />
       </GoogleMap>
